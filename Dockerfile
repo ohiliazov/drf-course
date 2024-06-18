@@ -1,28 +1,16 @@
-FROM python:3.9 as poetry
-
-ENV POETRY_HOME="/opt/poetry" \
-    PATH="/opt/poetry/bin:${PATH}"
-
-RUN curl -sSL https://install.python-poetry.org | python3 -
-
-WORKDIR /py
-COPY poetry.lock pyproject.toml ./
-
-RUN poetry export > /requirements.txt
-RUN poetry export --only dev > /requirements.dev.txt
-
 FROM python:3.9-alpine3.13
 LABEL maintainer="oleksandr.hiliazov"
 
 ENV PYTHONUNBUFFERED=1
+
+COPY requirements.txt requirements.dev.txt /tmp/
 
 COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
 
 ARG DEV=false
-RUN --mount=from=poetry,target=/tmp \
-    python -m venv /py && \
+RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /tmp/requirements.txt && \
     if [ $DEV == "true" ]; then \
