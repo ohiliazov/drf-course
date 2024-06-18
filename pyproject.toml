@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "drf-course"
+version = "0.1.0"
+description = "Django REST Framework Course"
+authors = ["Oleksandr Hiliazov <oleksandr.hiliazov@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.7.1"
+ruff = "^0.4.9"
+setuptools = "^70.0.0"
+
+[tool.ruff]
+line-length = 79
+extend-select = ["I"]
+
+[tool.ruff.isort]
+combine-as-imports = true
+split-on-trailing-comma = false
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
