@@ -6,21 +6,16 @@ authors = ["Oleksandr Hiliazov <oleksandr.hiliazov@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.9"
+django = "~3.2.4"
+djangorestframework = "~3.12.4"
 
+[tool.poetry.group.dev]
+optional = true
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.7.1"
 ruff = "^0.4.9"
-setuptools = "^70.0.0"
-
-[tool.ruff]
-line-length = 79
-extend-select = ["I"]
-
-[tool.ruff.isort]
-combine-as-imports = true
-split-on-trailing-comma = false
 
 [tool.ruff.per-file-ignores]
 "__init__.py" = ["F401"]

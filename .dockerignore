@@ -1,0 +1,14 @@
+# PyCharm
+.idea
+
+# Git
+.git
+.gitignore
+
+# Docker
+.docker
+
+# Python
+**/__pycache__
+.env
+.venv

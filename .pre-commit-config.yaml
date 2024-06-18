@@ -13,12 +13,6 @@ repos:
         language: system
         files: requirements.txt
 
-      - id: tailwindcss
-        name: tailwindcss
-        entry: bash -c 'npx tailwindcss -i static/css/input.css -o static/css/output.css'
-        language: system
-        files: static/css/output.css
-
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
@@ -30,10 +24,5 @@ repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.4.9
     hooks:
-      - id: ruff-format
-
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.4.9
-    hooks:
       - id: ruff
-        args: [--fix]
+      - id: ruff-format
