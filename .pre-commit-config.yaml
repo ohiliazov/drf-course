@@ -9,9 +9,15 @@ repos:
 
       - id: poetry-export
         name: poetry-export
-        entry: bash -c 'poetry export -f requirements.txt -o requirements.txt --without-hashes'
+        entry: bash -c 'poetry export > requirements.txt'
         language: system
         files: requirements.txt
+
+      - id: poetry-export-dev
+        name: poetry-export-dev
+        entry: bash -c 'poetry export --only dev > requirements.dev.txt'
+        language: system
+        files: requirements.dev.txt
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
