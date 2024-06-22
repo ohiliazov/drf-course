@@ -14,3 +14,6 @@ requirements:
 
 lint:
     poetry run pre-commit run --all
+
+up:
+    docker-compose up --build
