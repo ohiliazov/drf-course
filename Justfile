@@ -17,3 +17,9 @@ lint:
 
 up: requirements
     docker-compose up --build
+
+run *command:
+    docker-compose run --rm app sh -c "{{command}}"
+
+test:
+    just run python manage.py test

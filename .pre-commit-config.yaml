@@ -1,26 +1,14 @@
 repos:
   - repo: local
     hooks:
-      - id: poetry-lock
-        name: poetry-lock
-        entry: bash -c 'poetry lock --no-update'
+      - id: just-requirements
+        name: check requirements
+        entry: bash -c 'just requirements'
         language: system
-        files: poetry.lock
-
-      - id: poetry-export
-        name: poetry-export
-        entry: bash -c 'poetry export > requirements.txt'
-        language: system
-        files: requirements.txt
-
-      - id: poetry-export-dev
-        name: poetry-export-dev
-        entry: bash -c 'poetry export --only dev > requirements.dev.txt'
-        language: system
-        files: requirements.dev.txt
+        files: poetry.lock|requirements(\.dev)?\.txt
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.6.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
