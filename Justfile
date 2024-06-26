@@ -9,8 +9,9 @@ install:
 
 requirements:
     poetry lock --no-update
-    poetry export > requirements.txt
-    poetry export --only dev > requirements.dev.txt
+    poetry export --without-hashes --only main > requirements.txt
+    poetry export --without-hashes --only psycopg2 > requirements.psycopg2.txt
+    poetry export --without-hashes --only dev > requirements.dev.txt
 
 lint:
     poetry run pre-commit run --all

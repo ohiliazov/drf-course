@@ -5,7 +5,7 @@ repos:
         name: check requirements
         entry: bash -c 'just requirements'
         language: system
-        files: poetry.lock|requirements(\.dev)?\.txt
+        files: poetry.lock|requirements(\.(dev|psycopg2))?\.txt
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0

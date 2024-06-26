@@ -2,10 +2,14 @@ FROM python:3.9-alpine3.13
 LABEL maintainer="oleksandr.hiliazov"
 
 ENV PYTHONUNBUFFERED=1
-
-COPY requirements.txt requirements.dev.txt /tmp/
-
 EXPOSE 8000
+
+RUN adduser \
+        --disabled-password \
+        --no-create-home \
+        django-user
+
+COPY requirements.txt requirements.psycopg2.txt requirements.dev.txt /tmp/
 
 ARG DEV=false
 RUN python -m venv /py && \
@@ -13,16 +17,14 @@ RUN python -m venv /py && \
     apk add --update --no-cache postgresql-client && \
     apk add --update --no-cache --virtual .tmp-build-deps \
         build-base postgresql-dev musl-dev && \
-    /py/bin/pip install -r /tmp/requirements.txt && \
+    /py/bin/pip install --no-cache-dir -r /tmp/requirements.psycopg2.txt && \
+    apk del .tmp-build-deps
+
+RUN /py/bin/pip install --no-cache-dir -r /tmp/requirements.txt && \
     if [ $DEV == "true" ]; then \
-      /py/bin/pip install -r /tmp/requirements.dev.txt; \
+      /py/bin/pip install --no-cache-dir -r /tmp/requirements.dev.txt; \
     fi && \
-    rm -rf /tmp && \
-    apk del .tmp-build-deps && \
-    adduser \
-        --disabled-password \
-        --no-create-home \
-        django-user
+    rm -rf /tmp
 
 COPY ./app /app
 WORKDIR /app
