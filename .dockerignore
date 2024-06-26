@@ -1,14 +1,12 @@
-# PyCharm
-.idea
-
-# Git
-.git
+.docker/
+.idea/
+.git/
+.venv/
 .gitignore
-
-# Docker
-.docker
-
-# Python
-**/__pycache__
-.env
-.venv
+.pre-commit-config.yaml
+docker-compose.yml
+Dockerfile
+Justfile
+poetry.toml
+ruff.toml
+**/__pycache__/
