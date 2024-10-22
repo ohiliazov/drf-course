@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.9"
 django = "~3.2.4"
 djangorestframework = "~3.12.4"
+drf-spectacular = "^0.15.1"
 
 [tool.poetry.group.psycopg2.dependencies]
 psycopg2 = "^2.8.6"

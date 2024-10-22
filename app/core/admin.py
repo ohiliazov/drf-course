@@ -6,6 +6,8 @@ from core import models
 
 
 class UserAdmin(BaseUserAdmin):
+    """Admin class for the User model."""
+
     ordering = ["id"]
     list_display = ["email", "name"]
     fieldsets = (
